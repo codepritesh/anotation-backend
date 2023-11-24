@@ -15,17 +15,14 @@ exports.getByIndex = catchAsync(async (req, res, next) => {
   })
 })
 
-exports.update = catchAsync(async (req, res, next) => {
-  
+exports.update = catchAsync(async (req, res, next) => {  
   const { _id, answer, answer_start, context, index,question, validated} = req.body
   console.log(index)
   const updateQuestion = await Databuilder.findByIdAndUpdate(_id,
     {
       $set: { answer: answer, answer_start:answer_start, context:context, question:question,validated:validated },
     })
-
     return res.status(200).json({
       message: "data update successfully"
     })
- 
 })
