@@ -1,0 +1,52 @@
+# Use root/example as user/password credentials
+# sudo docker compose -f anotation-backend-dockercompose.yml up -d
+# to build
+# sudo docker build --tag 'anotaion-tool-backend' .
+version: '1.1'
+networks:
+  anotation-tool-net:
+    external: true
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-pritesh
+    restart: always
+    networks:
+      - anotation-tool-net
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+     - mongo-data:/data/db
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2g
+        reservations:
+          cpus: '1.5'
+          memory: 1g
+  anotaion-tool-backend:
+    build: .
+    container_name: anotaion-tool-backend
+    restart: always
+    networks:
+      - anotation-tool-net
+    ports:
+      - 8083:8083
+    environment:
+      MONGODB_URL: mongodb://root:example@mongo:27017/
+      MONGODB_DB : DevDB
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 4g
+        reservations:
+          cpus: '3.5'
+          memory: 3g
+volumes:
+ mongo-data:
+  driver: local
