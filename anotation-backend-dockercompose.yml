@@ -30,6 +30,7 @@ services:
           memory: 1g
   anotaion-tool-backend:
     build: .
+    image: anotaion-tool-backend-docker-image
     container_name: anotaion-tool-backend
     restart: always
     networks:
