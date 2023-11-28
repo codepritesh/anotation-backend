@@ -13,6 +13,8 @@ pipeline {
                 docker compose -f anotation-backend-dockercompose.yml down
                 docker rm -f anotaion-tool-backend
                 docker rmi anotaion-tool-backend-docker-image
+                docker rm -f mongo-pritesh
+                docker rmi mongo
                 '''
             }
         }
