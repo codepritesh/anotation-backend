@@ -9,7 +9,6 @@ WORKDIR /usr/src/AnotaionToolBackend
 
 # Copy dependency definitions
 COPY package.json /usr/src/AnotaionToolBackend
-COPY package-lock.json /usr/src/AnotaionToolBackend
 
 # Install dependecies
 #RUN npm set progress=false \
