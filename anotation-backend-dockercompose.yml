@@ -23,10 +23,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2.0'
-          memory: 2g
-        reservations:
-          cpus: '1.5'
+          cpus: '1.0'
           memory: 1g
   anotaion-tool-backend:
     build: .
@@ -43,11 +40,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '4.0'
-          memory: 4g
+          cpus: '1.5'
+          memory: 2g
         reservations:
-          cpus: '3.5'
-          memory: 3g
+          cpus: '1.0'
+          memory: 1g
 volumes:
  mongo-data:
   driver: local

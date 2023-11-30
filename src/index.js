@@ -13,7 +13,7 @@ app.use('/v1', routes)
 
 
 app.get('/', (req, res) => {
-    res.send('App works')
+    res.send('App works version 2')
   })
 
 
