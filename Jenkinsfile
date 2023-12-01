@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('projectname-staging-envname')
+        AWS_SECRET_ACCESS_KEY = credentials('hfghfghfghfgh-fghfg-test')
+    }
     options {
         // This is required if you want to clean before build
         skipDefaultCheckout(true)
@@ -25,7 +29,7 @@ pipeline {
                 // We need to explicitly checkout from SCM here
                 checkout scm
                 sh '''
-                docker compose -f anotation-backend-dockercompose.yml up -d
+                docker compose --env-file ../envconfig/anotationBackendStaging.env -f anotation-backend-dockercompose.yml up -d
                 '''
             }
         }
